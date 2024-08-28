@@ -79,7 +79,7 @@ function CreateAccount() {
                     required
                     placeholder="비밀번호"
                 />
-                <Input type="submit" />
+                <Input type="submit" value={loading ? "잠시만 기다려주세요..." : "회원가입"} />
             </Form>
             {error !== "" ? <Error>{error}</Error> : null}
             <Switcher>
