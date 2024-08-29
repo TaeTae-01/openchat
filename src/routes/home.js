@@ -1,7 +1,13 @@
+import PostTweet from "../components/post-tweet";
+import TimeLine from "../components/timeline";
+
 function Home() {
     return (
-        <h1>Home !</h1>
-    )
+        <>
+            <PostTweet />
+            <TimeLine />
+        </>
+    );
 }
 
 export default Home;
