@@ -4,10 +4,16 @@ import styled from "styled-components";
 import { db } from "../firebase";
 import Tweet from "./tweet";
 
-const Wrapper = styled.div`
- display: flex;
- gap: 10px;
- flex-direction: column;
+const ChatWindow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Gap between tweets */
+  overflow-y: auto; /* Enable scrolling */
+  padding: 15px; /* Add padding for chat window look */
+  border: 1px solid rgba(221, 221, 221, 0.8); /* Add a subtle border */
+  border-radius: 10px; /* Add rounded corners */
+  background-color: #fff; /* Set background color to white */
+  height: calc(100vh - 120px); /* Set height to fill viewport minus header/footer */
 `;
 
 export default function TimeLine() {
@@ -40,8 +46,8 @@ export default function TimeLine() {
     }, []);
 
     return (
-        <Wrapper>
+        <ChatWindow>
             {tweets.map((tweet) => (<Tweet key={tweet.id} {...tweet} />))}
-        </Wrapper>
+        </ChatWindow>
     );
 }

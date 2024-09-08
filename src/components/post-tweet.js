@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 const Form = styled.form`
  display: flex;
  flex-direction: column;
- gap: 10px;
+ gap: 7px;
  `;
 
 const TextArea = styled.textarea`
@@ -21,16 +21,16 @@ const TextArea = styled.textarea`
  resize: none;
  &:focus {
    outline: none;
-   border-color: blue;
+   border-color: yellow;
    }
  `;
 
 const AttachFileBtn = styled.label`
  padding: 10px 0px;
- color: blue;
+ color: white;
  text-align: center;
  border-radius: 20px;
- border: 1px solid blue;
+ border: 1px solid yellow;
  font-size: 14px;
  font-weight: 600;
  cursor: pointer;

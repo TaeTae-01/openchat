@@ -3,33 +3,32 @@ import { auth, db, storage } from "../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
-const Wrapper = styled.div`
- display: grid;
- grid-template-columns: 3fr 1fr;
- padding: 20px;
- border: 1px solid rgba(250, 250, 250, 0.8);
- border-radius: 15px;
- margin-bottom: 15px; /* 트윗 간의 간격 추가 */
- background-color: #f8f9fa; /* 배경색 추가 */
-`;
-
-const Column = styled.div`
- display: flex;
- flex-direction: column;
- align-items: flex-start;
- justify-content: space-between;
+const
+    MessageBubble = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 15px; /* Padding for message content */
+  border-radius: 10px; /* Rounded corners for message bubble */
+  background-color: #f5f5f5; /* Light gray background for messages */
+  margin-bottom: 10px; /* Add margin between messages */
+  position: relative; /* Needed for username positioning */
 `;
 
 const Username = styled.span`
- font-weight: 600;
- font-size: 15px;
- color: #333; /* 텍스트 색상 변경 */
+  font-weight: 600;
+  font-size: 15px;
+  color: black;
+  position: absolute; /* Position username above message bubble */
+  top: -5px; /* Adjust username position */
+  left: 10px; /* Adjust username position */
 `;
 
 const Payload = styled.p`
  margin: 10px 0px;
  font-size: 18px;
- color: #555; /* 텍스트 색상 변경 */
+ color: #555; 
 `;
 
 const Photo = styled.img`
@@ -37,7 +36,7 @@ const Photo = styled.img`
  height: 100px;
  border-radius: 15px;
  cursor: pointer;
- object-fit: cover; /* 이미지의 비율을 유지하면서 크기 조정 */
+ object-fit: cover;
 `;
 
 const DeleteBtn = styled.button`
@@ -50,7 +49,7 @@ const DeleteBtn = styled.button`
  text-transform: uppercase;
  border-radius: 5px;
  cursor: pointer;
- margin-top: 10px; /* 버튼과 텍스트 사이의 간격 추가 */
+ margin-top: 5px;
 `;
 
 export default function Tweet({ username, photo, tweet, userId, id }) {
@@ -76,15 +75,11 @@ export default function Tweet({ username, photo, tweet, userId, id }) {
     };
 
     return (
-        <Wrapper>
-            <Column>
-                <Username>{username}</Username>
-                <Payload>{tweet}</Payload>
-                {user?.uid === userId ? <DeleteBtn onClick={onDelete}>삭제</DeleteBtn> : null}
-            </Column>
-            <Column>
-                {photo ? <Photo src={photo} onClick={onPhotoClick} /> : null}
-            </Column>
-        </Wrapper>
+        <MessageBubble>
+            <Username>{username}</Username>
+            <Payload>{tweet}</Payload>
+            {user?.uid === userId ? <DeleteBtn onClick={onDelete}>삭제</DeleteBtn> : null}
+            {photo ? <Photo src={photo} onClick={onPhotoClick} /> : null}
+        </MessageBubble>
     );
 }
